@@ -18,3 +18,9 @@ supabase: Client = create_client(
 def health():
     return {"status": "working Perfectly"}
 
+# READ from supabase table created 
+@app.route("/api/contacts")
+def get_contacts():
+    response = supabase.table("Directory").select("*").execute()
+    return response.data
+
